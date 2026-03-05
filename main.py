@@ -11,7 +11,7 @@ st.set_page_config(page_title="Institut - Inscription", layout="centered")
 st.title("🎓 Inscription des Étudiants")
 st.write("Veuillez remplir le formulaire ci-dessous pour créer votre compte.")
 
-Formulaire d'inscription
+Debut du formulaire
 with st.form("form_inscription", clear_on_submit=True):
 nom = st.text_input("Nom")
 prenom = st.text_input("Prénom")
@@ -26,7 +26,6 @@ if valider:
 if not email or not password:
 st.error("L'email et le mot de passe sont obligatoires !")
 else:
-# On prépare les données
 infos_etudiant = {
 "nom": nom,
 "prenom": prenom,

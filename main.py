@@ -30,7 +30,7 @@ def afficher_inscription():
         
         if photo_profil is not None:
             st.image(photo_profil, width=150)
-            
+        
         submit_button = st.form_submit_button("S'inscrire")
         if submit_button:
             st.success("Compte créé ! Connectez-vous via le menu à gauche.")
@@ -41,8 +41,8 @@ def afficher_connexion():
     st.subheader("Entrez vos identifiants")
     with st.form("form_connexion"):
         email_log = st.text_input("Email")
-         pass_log = st.text_input("Mot de passe", type="password")
-         bouton_log = st.form_submit_button("Se connecter")
+        pass_log = st.text_input("Mot de passe", type="password")
+        bouton_log = st.form_submit_button("Se connecter")
         if bouton_log:
             if email_log and pass_log:
                 st.success("Connexion réussie !")
@@ -53,4 +53,4 @@ def afficher_connexion():
 if page == "Inscription":
     afficher_inscription()
 else:
-    afficher_connexion()
+....afficher_connexion()

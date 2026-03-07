@@ -1,44 +1,56 @@
 import streamlit as st
 
-1. CONFIGURATION
+1. CONFIGURATION DU SITE
 st.set_page_config(page_title="Réseau Social Institut", layout="centered")
 
-2. MENU LATÉRAL
+2. MENU DE NAVIGATION
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Aller vers :", ["Connexion", "Inscription"])
 
 3. PAGE D'INSCRIPTION
 def afficher_inscription():
-    st.title("🎓 Inscription")
-    with st.form("inscription_form"):
-        col1, col2 = st.columns(2)
-        with col1:
-            nom = st.text_input("Nom")
-            prenom = st.text_input("Prénom")
-            date_nays = st.date_input("Date de naissance")
-        with col2:
-            profession = st.text_input("Profession")
-            ville = st.text_input("Ville")
-            email = st.text_input("Email")
-        password = st.text_input("Mot de passe", type="password")
-        st.write("---")
-        photo = st.file_uploader("📸 Photo de profil", type=['png', 'jpg'])
-        submit = st.form_submit_button("S'inscrire")
-        if submit:
-            st.success("Compte créé !")
+....st.title("🎓 Inscription à l'Institut")
+....st.subheader("Créez votre compte")
+....with st.form("inscription_form"):
+........col1, col2 = st.columns(2)
+........with col1:
+............nom = st.text_input("Nom")
+............prenom = st.text_input("Prénom")
+............date_nays = st.date_input("Date de naissance")
+............lieu_nays = st.text_input("Lieu de naissance")
+........with col2:
+............profession = st.text_input("Profession")
+............ville = st.text_input("Ville")
+............email = st.text_input("Email")
+............password = st.text_input("Mot de passe", type="password")
+........
+........st.write("---")
+........st.write("📸 Ma Photo de Profil")
+........photo_profil = st.file_uploader("Choisir une image", type=['png', 'jpg', 'jpeg'])
+........
+........if photo_profil is not None:
+............st.image(photo_profil, width=150)
+............
+........submit_button = st.form_submit_button("S'inscrire")
+........if submit_button:
+............st.success("Compte créé ! Connectez-vous via le menu à gauche.")
 
 4. PAGE DE CONNEXION
 def afficher_connexion():
-    st.title("🔑 Connexion")
-    with st.form("form_connexion"):
-        email_log = st.text_input("Email")
-        pass_log = st.text_input("Mot de passe", type="password")
-        bouton_log = st.form_submit_button("Se connecter")
-        if bouton_log:
-            st.success("Connexion réussie !")
+....st.title("🔑 Connexion")
+....st.subheader("Entrez vos identifiants")
+....with st.form("form_connexion"):
+........email_log = st.text_input("Email")
+........pass_log = st.text_input("Mot de passe", type="password")
+........bouton_log = st.form_submit_button("Se connecter")
+........if bouton_log:
+............if email_log and pass_log:
+................st.success("Connexion réussie !")
+............else:
+................st.error("Veuillez remplir les champs.")
 
-5. LOGIQUE D'AFFICHAGE
+5. LOGIQUE POUR AFFICHER LA BONNE PAGE
 if page == "Inscription":
-    afficher_inscription()
+....afficher_inscription()
 else:
-    afficher_connexion()
+....afficher_connexion()

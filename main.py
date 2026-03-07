@@ -19,7 +19,7 @@ def afficher_inscription():
             date_nays = st.date_input("Date de naissance")
             lieu_nays = st.text_input("Lieu de naissance")
         with col2:
-            profession = st.text_input("Profession")
+             profession = st.text_input("Profession")
             ville = st.text_input("Ville")
             email = st.text_input("Email")
             password = st.text_input("Mot de passe", type="password")
@@ -45,9 +45,9 @@ def afficher_connexion():
         bouton_log = st.form_submit_button("Se connecter")
         if bouton_log:
             if email_log and pass_log:
-                st.success("Connexion réussie !")
+            st.success("Connexion réussie !")
             else:
-                st.error("Veuillez remplir les champs.")
+               st.error("Veuillez remplir les champs.")
 
 5. LOGIQUE POUR AFFICHER LA BONNE PAGE
 if page == "Inscription":

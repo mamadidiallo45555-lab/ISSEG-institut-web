@@ -1,45 +1,30 @@
 import streamlit as st
-from supabase import create_client
 
-# Connexion sécurisée
-url = st.secrets["SUPABASE_URL"]
-key = st.secrets["SUPABASE_KEY"]
-supabase = create_client(url, key)
+def formulaire_inscription():
+    st.title("🎓 Inscription à l'Institut")
+    st.subheader("Créez votre compte pour accéder aux actualités")
 
-st.set_page_config(page_title="Institut - Inscription", layout="centered")
+    # Création des champs que tu as demandés
+    with st.form("inscription_form"):
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            nom = st.text_input("Nom")
+            prenom = st.text_input("Prénom")
+            date_nays = st.date_input("Date de naissance")
+            lieu_nays = st.text_input("Lieu de naissance")
+            
+        with col2:
+            profession = st.text_input("Profession")
+            ville = st.text_input("Ville")
+            email = st.text_input("Email")
+            password = st.text_input("Mot de passe", type="password")
 
-st.title("🎓 Inscription des Étudiants")
-st.write("Remplissez le formulaire.")
+        submit_button = st.form_submit_button("S'inscrire")
 
-# Debut du formulaire
-with st.form("form_inscription", clear_on_submit=True):
-    nom = st.text_input("Nom")
-    prenom = st.text_input("Prénom")
-    date_n = st.date_input("Date de naissance")
-    lieu_n = st.text_input("Lieu de naissance")
-    profession = st.text_input("Profession")
-    ville = st.text_input("Ville")
-    email = st.text_input("Email")
-    password = st.text_input("Mot de passe", type="password")
-    valider = st.form_submit_button("Créer mon compte")
+        if submit_button:
+            # Ici, nous ajouterons la logique pour envoyer les données à Supabase
+            st.success(f"Bienvenue {prenom} ! Votre profil est en cours de création.")
 
-if valider:
-    if not email or not password:
-        st.error("Email et mot de passe obligatoires !")
-    else:
-        infos_etudiant = {
-            "nom": nom,
-            "prenom": prenom,
-            "date_naissance": str(date_n),
-            "lieu_naissance": lieu_n,
-            "profession": profession,
-            "ville": ville,
-            "email": email,
-            "mot_de_passe": password
-        }
-        try:
-            supabase.table("utilisateurs").insert(infos_etudiant).execute()
-            st.success("Compte créé !")
-            st.balloons()
-        except Exception as e:
-            st.error(f"Erreur : {e}")
+# Appel de la fonction
+formulaire_inscription()
